@@ -14,7 +14,7 @@ function Login({ onChange }) {
         .then((data) => {
             console.log(data.data)
             localStorage.setItem('userID', data.data);
-            onChange(data.data)
+            onChange(data.data, userName)
         }) 
     }
 
