@@ -14,6 +14,10 @@ function Home({ user }){
     // API results state
     const [searchResults, setSearchResults] = React.useState([])
 
+    const foundBooks = searchResults.map((book, i) => {
+        return <Book key={i} title={book.title} authors={book.authors} />
+    })
+
     function handleInputChange(e) {
         switch(e.target.name) {
             case 'title':
@@ -46,10 +50,8 @@ function Home({ user }){
             setSearchResults(newResults)
         });
     }
-    console.log(searchResults)
-    const foundBooks = searchResults.map((book, i) => {
-        return <Book key={i} title={book.title} authors={book.authors} />
-    })
+
+
 
     return (
         <>
