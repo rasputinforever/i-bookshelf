@@ -4,7 +4,7 @@ import API from '../utils/API.js'
 
 import { Button, Form } from 'semantic-ui-react'
 
-function Login() {
+function Login({ onChange }) {
     
     const [userName, setUserName] = React.useState('')
 
@@ -14,7 +14,7 @@ function Login() {
         .then((data) => {
             console.log(data.data)
             localStorage.setItem('userID', data.data);
-
+            onChange(data.data)
         }) 
     }
 
