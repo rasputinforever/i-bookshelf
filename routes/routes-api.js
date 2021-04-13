@@ -6,9 +6,10 @@ Router.get("/api/books", async (req, res) => {
 
 });
 
-Router.post("/api/book/:name", async (req, res) => {
-  console.log("POST request for book name: ", req.params.category)
+Router.post("/api/users/:user", async (req, res) => {
+  console.log("POST request for userName: ", req.params.user)
 
+  res.json("Nice Work!")
 
 });
 
