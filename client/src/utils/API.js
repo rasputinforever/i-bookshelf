@@ -7,4 +7,7 @@ export default {
     const url = "/api/users/" + query
     return axios.post(url);
   },
+  googleBook: function(query) {
+    console.log("put google API stuff here for ", query)
+  }
 };

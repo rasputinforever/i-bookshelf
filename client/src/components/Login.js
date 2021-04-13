@@ -25,7 +25,7 @@ function Login({ onChange }) {
     return (
         <Form>
             <Form.Field>
-            <label>First Name</label>
+            <label>Choose your Username</label>
             <input 
                 value={userName}
                 onChange={handleInputChange}
