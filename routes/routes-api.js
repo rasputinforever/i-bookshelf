@@ -8,9 +8,13 @@ Router.get("/api/books", async (req, res) => {
 
 Router.post("/api/users/:user", async (req, res) => {
   console.log("POST request for userName: ", req.params.user)
+  const newUser = {
+    user: req.params.user,
+    books: [],
+  }
+  Books.insertMany(newUser)
 
-  res.json("Nice Work!")
-
+  res.json("Sent")
 });
 
 module.exports = Router;
