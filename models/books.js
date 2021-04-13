@@ -1,28 +1,16 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const bookInfoSchema = new Schema({
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  author: { type: String, required: true },
+})
+
 const booksSchema = new Schema({
-  username: {
-    type: String,
-    trim: true,
-    required: "Username is Required",
-  },
-  email: {
-    type: String,
-    unique: true,
-    match: [/.+@.+\..+/, "Please enter a valid e-mail address"],
-  },
-  fire_id: {
-    type: String,
-    unique: true,
-  },
-  userCreated: {
-    type: Date,
-    default: Date.now,
-  },
-  savedBooks: {
-    type: Array,
-  }
+  user: { type: String, required: true },
+  books: [bookInfoSchema],
+
 });
 const Books = mongoose.model("Books", booksSchema);
 
