@@ -5,11 +5,16 @@ import { Button, Form } from 'semantic-ui-react'
 function Home({ user }){
     
     const [bookTitle, setBookTitle] = React.useState('')
+    const [bookAuthor, setBookAuthor] = React.useState('')
+    const [bookDescription, setBookDescription] = React.useState('')
 
     function handleInputChange(e) {
         switch(e.target.name) {
             case 'title':
               setBookTitle(e.target.value)
+              break;
+            case 'author':
+                setBookAuthor(e.target.value)
               break;
             default:
               // code block
@@ -17,7 +22,8 @@ function Home({ user }){
     }
 
     function handleSubmit(){
-        console.log("nothing yet")
+        console.log(bookTitle)
+        console.log(bookAuthor)
     }
 
     return (
@@ -34,8 +40,17 @@ function Home({ user }){
                     onChange={handleInputChange}
                     placeholder='Title' />
                 </Form.Field>
+                <Form.Field>
+                <label>Book Author</label>
+                <input 
+                    value={bookAuthor}
+                    name='author'
+                    onChange={handleInputChange}
+                    placeholder='Author' />
+                </Form.Field>
                 <Button type='submit' onClick={handleSubmit}>Submit</Button>
             </Form>
+            <div></div>
         </>
     )
 }
