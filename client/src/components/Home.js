@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
+import Book from './Book.js'
+
 import API from '../utils/API.js'
 
 import { Button, Form } from 'semantic-ui-react'
@@ -46,7 +48,7 @@ function Home({ user }){
     }
     console.log(searchResults)
     const foundBooks = searchResults.map((book, i) => {
-        return <div key={i}>Title: {book.title}, Author(s): {book.authors}</div>
+        return <Book key={i} title={book.title} authors={book.authors} />
     })
 
     return (
