@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
+import API from '../utils/API.js'
 
 import { Button, Form } from 'semantic-ui-react'
 
 function Home({ user }){
-    
+    // form states
     const [bookTitle, setBookTitle] = React.useState('')
     const [bookAuthor, setBookAuthor] = React.useState('')
-    const [bookDescription, setBookDescription] = React.useState('')
+
+    // API results state
+    const [searchResults, setSearchResults] = React.useState([])
 
     function handleInputChange(e) {
         switch(e.target.name) {
@@ -21,10 +25,29 @@ function Home({ user }){
           }     
     }
 
+    // API call to google
     function handleSubmit(){
         console.log(bookTitle)
         console.log(bookAuthor)
+        API.googleBook()
+        
+        .then((data) => {
+            let newResults = []
+            data.data.items.forEach((book) => {
+                newResults.push({
+                    title: book.volumeInfo.title,
+                    authors: book.volumeInfo.authors,
+                })
+            })
+            
+            // worry about dupes? 
+            setSearchResults(newResults)
+        });
     }
+    console.log(searchResults)
+    const foundBooks = searchResults.map((book, i) => {
+        return <div key={i}>Title: {book.title}, Author(s): {book.authors}</div>
+    })
 
     return (
         <>
@@ -50,7 +73,9 @@ function Home({ user }){
                 </Form.Field>
                 <Button type='submit' onClick={handleSubmit}>Submit</Button>
             </Form>
-            <div></div>
+            <div>
+                {searchResults.length > 0 ? foundBooks : <></>}
+            </div>
         </>
     )
 }
