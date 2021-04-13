@@ -35,7 +35,7 @@ function Home({ user }){
     function handleSubmit(){
         console.log(bookTitle)
         console.log(bookAuthor)
-        API.googleBook()
+        API.googleBook(bookTitle + " " + bookAuthor)
         
         .then((data) => {
             let newResults = []
