@@ -1,11 +1,11 @@
 import React from 'react'
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
 
 function Login() {
     
     const [userName, setUserName] = React.useState('')
 
-    function handleSubmit(e){
+    function handleSubmit(){
         console.log("You clicked it!", userName)
     }
 
