@@ -12,7 +12,9 @@ function Login() {
         console.log("You clicked it!", userName)
         API.postUser(userName)
         .then((data) => {
-            console.log(data)
+            console.log(data.data)
+            localStorage.setItem('userID', data.data);
+
         }) 
     }
 

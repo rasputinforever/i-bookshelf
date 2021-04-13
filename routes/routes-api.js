@@ -13,8 +13,11 @@ Router.post("/api/users/:user", async (req, res) => {
     books: [],
   }
   Books.insertMany(newUser)
-
-  res.json("Sent")
+  .then(result => {
+    res.json(result[0]._id);
+    
+  })
+  
 });
 
 module.exports = Router;
