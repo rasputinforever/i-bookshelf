@@ -37,13 +37,13 @@ function Home({ user, userid }){
             
             // worry about dupes? 
             setSearchResults(newResults)
-            setIsSearching(false)
         });
     }
 
     function newBookRequest(newBook){
         // sends book object, with ID, to db        
         API.addBook(userid, newBook)
+        setIsSearching(false)
     }
 
     // rendered search results
@@ -61,9 +61,7 @@ function Home({ user, userid }){
 
             {isSearching ? <BookSearch onSearch={handleSubmit} /> : <button onClick={handleNewSearch}>New Search</button> }
 
-            
-            
-            {searchResults.length > 0 ? foundBooks : <></>}
+            {isSearching ? foundBooks : <></>}
         </>
     )
 }

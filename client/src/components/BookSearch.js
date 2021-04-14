@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Button, Form } from 'semantic-ui-react'
 
-function BookSearch({ onUpdate }){
+function BookSearch({ onSearch }){
     // form states
     const [bookTitle, setBookTitle] = React.useState('')
     const [bookAuthor, setBookAuthor] = React.useState('')
@@ -21,7 +21,7 @@ function BookSearch({ onUpdate }){
     }
 
     function handleSubmit() {
-        onUpdate(bookTitle, bookTitle)
+        onSearch(bookTitle, bookTitle)
     }
 
     return (
