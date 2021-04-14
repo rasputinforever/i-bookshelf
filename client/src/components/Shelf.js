@@ -21,6 +21,7 @@ function Shelf({ userid, isSearching }) {
 
     function handleDeleteItem(index) {
         console.log("Will delete this book: ", shelfItems[index])
+        API.deleteBook(userid, index)
     }
 
     useEffect(() => {

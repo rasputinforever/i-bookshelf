@@ -40,4 +40,25 @@ Router.put("/api/users/:userid", async (req, res) => {
   })
 });
 
+Router.delete("/api/users/:userid", async (req, res) => {
+  console.log("DELETE request for userName: ", req.params.userid, " at books index of ", req.body.index)
+  Books.findOne({ _id: req.params.userid })
+  .then((data) => {
+    
+    const index = parseInt(req.body.index)
+    
+    const newBookList = [...data.books]
+    
+    newBookList.splice(index, 1)
+
+    Books.updateOne({ _id: req.params.userid }, {
+      books: newBookList
+    })
+    .then(() => {
+      // final
+      res.status(200)
+    });
+  })
+});
+
 module.exports = Router;
