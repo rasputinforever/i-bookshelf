@@ -11,6 +11,6 @@ export default {
   },
   googleBook: function(query) {
     console.log("put google API stuff here for ", query)
-    return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=${API_KEY.API_KEY}`)
+    return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}`)
   }
 };

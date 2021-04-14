@@ -11,13 +11,6 @@ function Home({ user }){
     const [bookTitle, setBookTitle] = React.useState('')
     const [bookAuthor, setBookAuthor] = React.useState('')
 
-    // API results state
-    const [searchResults, setSearchResults] = React.useState([])
-
-    const foundBooks = searchResults.map((book, i) => {
-        return <Book key={i} title={book.title} authors={book.authors} />
-    })
-
     function handleInputChange(e) {
         switch(e.target.name) {
             case 'title':
@@ -31,6 +24,9 @@ function Home({ user }){
           }     
     }
 
+    // API results state
+    const [searchResults, setSearchResults] = React.useState([])
+    
     // API call to google
     function handleSubmit(){
         console.log(bookTitle)
@@ -51,6 +47,10 @@ function Home({ user }){
         });
     }
 
+    // rendered search results
+    const foundBooks = searchResults.map((book, i) => {
+        return <Book key={i} title={book.title} authors={book.authors} />
+    })
 
 
     return (
@@ -77,9 +77,7 @@ function Home({ user }){
                 </Form.Field>
                 <Button type='submit' onClick={handleSubmit}>Submit</Button>
             </Form>
-            <div>
-                {searchResults.length > 0 ? foundBooks : <></>}
-            </div>
+            {searchResults.length > 0 ? foundBooks : <></>}
         </>
     )
 }
