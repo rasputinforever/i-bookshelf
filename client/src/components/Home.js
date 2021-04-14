@@ -5,31 +5,21 @@ import Book from './Book.js'
 
 import API from '../utils/API.js'
 
-import { Button, Form } from 'semantic-ui-react'
+import BookSearch from './BookSearch.js'
 
 function Home({ user, userid }){
-    // form states
-    const [bookTitle, setBookTitle] = React.useState('')
-    const [bookAuthor, setBookAuthor] = React.useState('')
-
-    function handleInputChange(e) {
-        switch(e.target.name) {
-            case 'title':
-              setBookTitle(e.target.value)
-              break;
-            case 'author':
-                setBookAuthor(e.target.value)
-              break;
-            default:
-              // code block
-          }     
-    }
-
+    
     // API results state
+    const [isSearching, setIsSearching] = React.useState(false)
     const [searchResults, setSearchResults] = React.useState([])
     
+    // search button
+    function handleNewSearch() {
+        setIsSearching(true)
+    }
+
     // API call to google
-    function handleSubmit(){
+    function handleSubmit(bookTitle, bookAuthor){
         API.googleBook(bookTitle + " " + bookAuthor)
         
         .then((data) => {
@@ -47,6 +37,7 @@ function Home({ user, userid }){
             
             // worry about dupes? 
             setSearchResults(newResults)
+            setIsSearching(false)
         });
     }
 
@@ -60,35 +51,18 @@ function Home({ user, userid }){
         return <Book key={i} id={book.id} title={book.title} authors={book.authors} description={book.description} thumb={book.thumb} onSubmit={newBookRequest} />
     })
 
-
+    console.log("Is Searching? ",isSearching)
     return (
         <>
             <h1>This will be a Title, {user}!</h1>
             <h1>This will be a button that kills the user!</h1>
-            <Shelf userid={userid} />
-            <Form>
 
-                <Form.Field>
-                <label>Book Title</label>
-                <input 
-                    value={bookTitle}
-                    name='title'
-                    onChange={handleInputChange}
-                    placeholder='Title' />
-                </Form.Field>
+            <Shelf userid={userid} isSearching={isSearching} />
 
-                <Form.Field>
-                <label>Book Author</label>
-                <input 
-                    value={bookAuthor}
-                    name='author'
-                    onChange={handleInputChange}
-                    placeholder='Author' />
-                </Form.Field>
+            {isSearching ? <BookSearch onSearch={handleSubmit} /> : <button onClick={handleNewSearch}>New Search</button> }
 
-                <Button type='submit' onClick={handleSubmit}>Submit</Button>
-
-            </Form>
+            
+            
             {searchResults.length > 0 ? foundBooks : <></>}
         </>
     )

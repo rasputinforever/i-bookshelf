@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import API from '../utils/API.js'
 
-function Shelf({ userid }) {
+function Shelf({ userid, isSearching }) {
 
     const [shelfItems, setShelfItems] = React.useState([])
 
@@ -12,10 +12,10 @@ function Shelf({ userid }) {
             console.log("User's data", data.data.books)
             setShelfItems(data.data.books)
         })
-    }, [])
+    }, [userid, isSearching])
 
-    const renderedShelfItems = shelfItems.map((item) => {
-        return <img src={item.thumb} />
+    const renderedShelfItems = shelfItems.map((item, i) => {
+        return <img key={i} src={item.thumb} />
     })
 
     return (
