@@ -20,4 +20,11 @@ Router.post("/api/users/:user", async (req, res) => {
   
 });
 
+Router.put("/api/users/:userid/:bookid", async (req, res) => {
+  console.log("PUT request for userName: ", req.params.userid, " and ", req.params.bookid)
+  
+
+
+});
+
 module.exports = Router;

@@ -21,7 +21,7 @@ function App() {
   return (
     <>
       {!userID ? <Login onChange={handleNewUser}/> : <></>}
-      {userID ? <Home user={userName}/> : <></>}
+      {userID ? <Home user={userName} userid={userID} /> : <></>}
     </>
   );
 }

@@ -2,9 +2,14 @@ import React from 'react';
 
 import { Container, Header } from 'semantic-ui-react'
 
-function Book({ title, authors, description, thumb }) {
+
+function Book({ id, title, authors, description, thumb, onSubmit }) {
     // here put in buttons to SAVE the book
     // SAVE makes the book goto DB, use userID (drill it down if you must)
+    function handleSaveBook() {
+        onSubmit(id)
+    }
+
     return (
         <Container text>
             <Header as='h2'>{title}{authors ? <span> by {authors}</span> : <></>}</Header>
@@ -12,7 +17,7 @@ function Book({ title, authors, description, thumb }) {
             <p>
             {description}
             </p>
-            <button>Add to Shelf</button>
+            <button onClick={handleSaveBook}>Add to Shelf</button>
         </Container>
     )
 }

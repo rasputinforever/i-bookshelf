@@ -6,7 +6,7 @@ import API from '../utils/API.js'
 
 import { Button, Form } from 'semantic-ui-react'
 
-function Home({ user }){
+function Home({ user, userid }){
     // form states
     const [bookTitle, setBookTitle] = React.useState('')
     const [bookAuthor, setBookAuthor] = React.useState('')
@@ -29,15 +29,13 @@ function Home({ user }){
     
     // API call to google
     function handleSubmit(){
-        console.log(bookTitle)
-        console.log(bookAuthor)
         API.googleBook(bookTitle + " " + bookAuthor)
         
         .then((data) => {
             let newResults = []
             data.data.items.forEach((book) => {
-                console.log(book)
                 newResults.push({
+                    id: book.id,
                     title: book.volumeInfo.title,
                     authors: book.volumeInfo.authors,
                     description: book.volumeInfo.description,
@@ -51,9 +49,17 @@ function Home({ user }){
         });
     }
 
+    function newBookRequest(id){
+        console.log("New Book Will Be Saved to User")
+        // find the book in searchResults
+        // send it to the DB under the userID
+
+        API.addBook(userid, id)
+    }
+
     // rendered search results
     const foundBooks = searchResults.map((book, i) => {
-        return <Book key={i} title={book.title} authors={book.authors} description={book.description} thumb={book.thumb} img={book.img} />
+        return <Book key={i} id={book.id} title={book.title} authors={book.authors} description={book.description} thumb={book.thumb} onSubmit={newBookRequest} />
     })
 
 
