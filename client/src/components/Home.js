@@ -51,7 +51,6 @@ function Home({ user, userid }){
         return <Book key={i} id={book.id} title={book.title} authors={book.authors} description={book.description} thumb={book.thumb} onSubmit={newBookRequest} />
     })
 
-    console.log("Is Searching? ",isSearching)
     return (
         <>
             <h1>This will be a Title, {user}!</h1>
