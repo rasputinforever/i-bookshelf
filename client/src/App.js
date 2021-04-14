@@ -10,7 +10,10 @@ function App() {
   const [userName, setUserName] = React.useState('')
 
   useEffect(() => {
-    setUserID(localStorage.getItem('userID'))
+    const userData = JSON.parse(localStorage.getItem('userID'))
+    console.log(userData)
+    setUserID(userData.userID)
+    setUserName(userData.user)
   }, [userID])
 
   function handleNewUser(userID, userName) {

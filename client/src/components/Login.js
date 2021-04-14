@@ -12,8 +12,11 @@ function Login({ onChange }) {
         console.log("You clicked it!", userName)
         API.postUser(userName)
         .then((data) => {
-            console.log(data.data)
-            localStorage.setItem('userID', data.data);
+            const newUser = JSON.stringify({
+                user: userName,
+                userID: data.data
+            })
+            localStorage.setItem('userID', newUser);
             onChange(data.data, userName)
         }) 
     }

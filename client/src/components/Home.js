@@ -61,7 +61,7 @@ function Home({ user, userid }){
 
     return (
         <>
-            <h1>This will be a Title, {user}!</h1>
+            <h1>This will be a Title, {userid}!</h1>
             <h1>This will be a button that kills the user!</h1>
 
             <Shelf userid={userid} isSearching={isSearching} />
