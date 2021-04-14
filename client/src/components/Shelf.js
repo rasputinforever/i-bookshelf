@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
 
+import ShelfItem from './ShelfItem.js'
+
 import API from '../utils/API.js'
+
+import { Card } from 'semantic-ui-react'
 
 function Shelf({ userid, isSearching }) {
     const [shelfItems, setShelfItems] = React.useState([])
@@ -20,14 +24,18 @@ function Shelf({ userid, isSearching }) {
         // convert this to a card
         // add a "DELETE option to that card"
         setRenderShelfItems(shelfItems.map((item, i) => {
-            return <img key={i} src={item.thumb} alt={item.title} />
+            return <ShelfItem key={i} thumb={item.thumb} title={item.title} />
         }))
     }, [shelfItems])
 
     return (
         <>
         <h2>Your Bookshelf</h2>
-        {renderShelfItems}  
+        <Card.Group>
+            {renderShelfItems}
+        </Card.Group>
+
+        
         </>
     )
 }
