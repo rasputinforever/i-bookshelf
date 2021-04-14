@@ -36,9 +36,13 @@ function Home({ user }){
         .then((data) => {
             let newResults = []
             data.data.items.forEach((book) => {
+                console.log(book)
                 newResults.push({
                     title: book.volumeInfo.title,
                     authors: book.volumeInfo.authors,
+                    description: book.volumeInfo.description,
+                    thumb: book.volumeInfo.imageLinks.smallThumbnail,
+                    img: book.volumeInfo.imageLinks.thumbnail,
                 })
             })
             
@@ -49,7 +53,7 @@ function Home({ user }){
 
     // rendered search results
     const foundBooks = searchResults.map((book, i) => {
-        return <Book key={i} title={book.title} authors={book.authors} />
+        return <Book key={i} title={book.title} authors={book.authors} description={book.description} thumb={book.thumb} img={book.img} />
     })
 
 
@@ -59,6 +63,7 @@ function Home({ user }){
             <h1>This will be a button that kills the user!</h1>
             <div>This will be the book list!</div>
             <Form>
+
                 <Form.Field>
                 <label>Book Title</label>
                 <input 
@@ -67,6 +72,7 @@ function Home({ user }){
                     onChange={handleInputChange}
                     placeholder='Title' />
                 </Form.Field>
+
                 <Form.Field>
                 <label>Book Author</label>
                 <input 
@@ -75,7 +81,9 @@ function Home({ user }){
                     onChange={handleInputChange}
                     placeholder='Author' />
                 </Form.Field>
+
                 <Button type='submit' onClick={handleSubmit}>Submit</Button>
+
             </Form>
             {searchResults.length > 0 ? foundBooks : <></>}
         </>
