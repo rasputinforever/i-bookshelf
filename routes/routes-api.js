@@ -22,8 +22,27 @@ Router.post("/api/users/:user", async (req, res) => {
 
 Router.put("/api/users/:userid/:bookid", async (req, res) => {
   console.log("PUT request for userName: ", req.params.userid, " and ", req.params.bookid)
-  
+  Books.findOne({ _id: req.params.userid })
+  .then((data) => {
+    console.log(data)
 
+    const newBookList = [...data.books, {
+      bookid: req.params.bookid
+    }]
+    console.log(newBookList)
+    Books.updateOne({ _id: req.params.userid }, {
+      books: newBookList
+    })
+    .then(() => {
+
+      
+      res.json('done')
+    });
+
+
+
+  })
+    
 
 });
 
