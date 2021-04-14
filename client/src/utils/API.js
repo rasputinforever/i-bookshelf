@@ -1,7 +1,5 @@
 import axios from "axios";
 
-import API_KEY from "./config.js"
-
 export default {
   // Gets all books
   postUser: function(query) {
