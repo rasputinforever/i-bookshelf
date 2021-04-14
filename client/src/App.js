@@ -4,18 +4,19 @@ import React, { useEffect } from "react";
 import Login from "./components/Login.js"
 import Home from "./components/Home.js"
 
-
 function App() {
+
   const [userID, setUserID] = React.useState('')
   const [userName, setUserName] = React.useState('')
 
+  // gets local storage info, if exists, set these states. Will set nothing if not there, which renders the Login page below.
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem('userID'))
-    console.log(userData)
     setUserID(userData.userID)
     setUserName(userData.user)
   }, [userID])
 
+  // returned from Login to set right away
   function handleNewUser(userID, userName) {
     setUserID(userID)
     setUserName(userName)
