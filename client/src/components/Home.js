@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 
+import Shelf from './Shelf.js'
 import Book from './Book.js'
 
 import API from '../utils/API.js'
@@ -50,10 +51,7 @@ function Home({ user, userid }){
     }
 
     function newBookRequest(newBook){
-        console.log("New Book Will Be Saved to User")
-        // find the book in searchResults
-        // send it to the DB under the userID
-        
+        // sends book object, with ID, to db        
         API.addBook(userid, newBook)
     }
 
@@ -67,7 +65,7 @@ function Home({ user, userid }){
         <>
             <h1>This will be a Title, {user}!</h1>
             <h1>This will be a button that kills the user!</h1>
-            <div>This will be the book list!</div>
+            <Shelf userid={userid} />
             <Form>
 
                 <Form.Field>

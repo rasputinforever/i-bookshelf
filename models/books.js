@@ -6,6 +6,7 @@ const bookInfoSchema = new Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
   author: { type: Array, required: true },
+  thumb: { type: String, required: true },
 })
 
 const booksSchema = new Schema({

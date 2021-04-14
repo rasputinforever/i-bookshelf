@@ -12,6 +12,7 @@ function Book({ id, title, authors, description, thumb, onSubmit }) {
             title: title,
             author: authors,
             description: description,
+            thumb: thumb,
         })
     }
 
