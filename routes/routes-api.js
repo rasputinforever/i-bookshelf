@@ -1,9 +1,12 @@
 const Router = require("express").Router();
 const Books = require("../models/books.js");
 
-Router.get("/api/books", async (req, res) => {
+Router.get("/api/users/:userid", async (req, res) => {
     console.log("GET request for books")
-
+    Books.findOne({ _id: req.params.userid })
+  .then((data) => {
+    res.status(200).json(data)
+  })
 });
 
 Router.post("/api/users/:user", async (req, res) => {
@@ -14,7 +17,7 @@ Router.post("/api/users/:user", async (req, res) => {
   }
   Books.insertMany(newUser)
   .then(result => {
-    res.json(result[0]._id);
+    res.status(200).json(result[0]._id);
     
   })
   
@@ -24,24 +27,17 @@ Router.put("/api/users/:userid", async (req, res) => {
   console.log("PUT request for userName: ", req.params.userid, " and ", req.body)
   Books.findOne({ _id: req.params.userid })
   .then((data) => {
-    console.log(data)
-
+    // now inject new book data
     const newBookList = [...data.books, req.body]
-    console.log(newBookList)
+
     Books.updateOne({ _id: req.params.userid }, {
       books: newBookList
     })
     .then(() => {
-
-      
-      res.json('done')
+      // final
+      res.status(200)
     });
-
-
-
   })
-    
-
 });
 
 module.exports = Router;
