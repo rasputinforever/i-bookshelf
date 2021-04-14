@@ -17,5 +17,9 @@ export default {
       url: url,
       data: query,
     });
+  },
+  getAllBooks: function(query) {
+    const url = "/api/users/" + query
+    return axios.get(url);
   }
 };
