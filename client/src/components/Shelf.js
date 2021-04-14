@@ -19,12 +19,16 @@ function Shelf({ userid, isSearching }) {
         })
     }, [userid, isSearching])
 
+    function handleDeleteItem(index) {
+        console.log("Will delete this book: ", shelfItems[index])
+    }
+
     useEffect(() => {
         console.log("Updating Rendered Items")
         // convert this to a card
         // add a "DELETE option to that card"
         setRenderShelfItems(shelfItems.map((item, i) => {
-            return <ShelfItem key={i} thumb={item.thumb} title={item.title} />
+            return <ShelfItem key={i} onDelete={handleDeleteItem} index={i} thumb={item.thumb} title={item.title} />
         }))
     }, [shelfItems])
 
