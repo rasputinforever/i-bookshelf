@@ -12,7 +12,7 @@ function Home({ user, userid }){
     // API results state
     const [isSearching, setIsSearching] = React.useState(false)
     const [searchResults, setSearchResults] = React.useState([])
-    
+    const [searchFail, setSearchFail] = React.useState(false)
     // search button
     function handleNewSearch() {
         setIsSearching(true)
@@ -20,20 +20,29 @@ function Home({ user, userid }){
 
     // API call to google
     function handleSubmit(bookTitle, bookAuthor){
-        API.googleBook(bookTitle + " " + bookAuthor)
+        const queryString = ((bookTitle) ? bookTitle : '') + ((bookTitle && bookAuthor) ? ' ' : '') + ((bookAuthor) ? bookAuthor : '')
+        
+        API.googleBook(queryString)
         
         .then((data) => {
+            console.log(data)
             let newResults = []
-            data.data.items.forEach((book) => {
-                newResults.push({
-                    id: book.id,
-                    title: book.volumeInfo.title,
-                    authors: book.volumeInfo.authors,
-                    description: book.volumeInfo.description,
-                    thumb: book.volumeInfo.imageLinks.smallThumbnail,
-                    img: book.volumeInfo.imageLinks.thumbnail,
+            if (data.data.items) {
+                
+                setSearchFail(false)
+                data.data.items.forEach((book) => {
+                    newResults.push({
+                        id: book.id,
+                        title: book.volumeInfo.title,
+                        authors: book.volumeInfo.authors,
+                        description: book.volumeInfo.description,
+                        thumb: book.volumeInfo.imageLinks.smallThumbnail,
+                        img: book.volumeInfo.imageLinks.thumbnail,
+                    })
                 })
-            })
+            } else {
+                setSearchFail(true)
+            }
             
             // worry about dupes? 
             setSearchResults(newResults)
@@ -60,6 +69,7 @@ function Home({ user, userid }){
 
             {isSearching ? <BookSearch onSearch={handleSubmit} /> : <button onClick={handleNewSearch}>New Search</button> }
 
+            {searchFail ? <h2>Nothing Found!</h2> : <></>}
             {isSearching ? foundBooks : <></>}
         </>
     )

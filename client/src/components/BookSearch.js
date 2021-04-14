@@ -21,7 +21,7 @@ function BookSearch({ onSearch }){
     }
 
     function handleSubmit() {
-        onSearch(bookTitle, bookTitle)
+        onSearch(bookTitle, bookAuthor)
     }
 
     return (
