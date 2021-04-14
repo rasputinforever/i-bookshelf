@@ -13,12 +13,14 @@ function Shelf({ userid, isSearching }) {
             // console.log("User's data", data.data.books)
             setShelfItems(data.data.books)
         })
-    }, [isSearching])
+    }, [userid, isSearching])
 
     useEffect(() => {
         console.log("Updating Rendered Items")
+        // convert this to a card
+        // add a "DELETE option to that card"
         setRenderShelfItems(shelfItems.map((item, i) => {
-            return <img key={i} src={item.thumb} />
+            return <img key={i} src={item.thumb} alt={item.title} />
         }))
     }, [shelfItems])
 

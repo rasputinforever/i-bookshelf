@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Shelf from './Shelf.js'
 import Book from './Book.js'
@@ -25,7 +25,6 @@ function Home({ user, userid }){
         API.googleBook(queryString)
         
         .then((data) => {
-            console.log(data)
             let newResults = []
             if (data.data.items) {
                 
