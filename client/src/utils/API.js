@@ -10,7 +10,12 @@ export default {
     return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}`)
   },
   addBook: function(user, query) {
-    const url = "/api/users/" + user + "/" + query
-    return axios.put(url);
+    const url = "/api/users/" + user
+
+    return axios({
+      method: 'put',
+      url: url,
+      data: query,
+    });
   }
 };

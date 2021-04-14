@@ -49,12 +49,12 @@ function Home({ user, userid }){
         });
     }
 
-    function newBookRequest(id){
+    function newBookRequest(newBook){
         console.log("New Book Will Be Saved to User")
         // find the book in searchResults
         // send it to the DB under the userID
-
-        API.addBook(userid, id)
+        
+        API.addBook(userid, newBook)
     }
 
     // rendered search results

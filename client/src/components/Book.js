@@ -7,7 +7,12 @@ function Book({ id, title, authors, description, thumb, onSubmit }) {
     // here put in buttons to SAVE the book
     // SAVE makes the book goto DB, use userID (drill it down if you must)
     function handleSaveBook() {
-        onSubmit(id)
+        onSubmit({
+            bookid: id,
+            title: title,
+            author: authors,
+            description: description,
+        })
     }
 
     return (
