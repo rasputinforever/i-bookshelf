@@ -52,6 +52,7 @@ function Home({ user, userid }){
         // sends book object, with ID, to db        
         API.addBook(userid, newBook)
         setIsSearching(false)
+        setSearchResults([])
     }
 
     // rendered search results
@@ -61,7 +62,7 @@ function Home({ user, userid }){
 
     return (
         <>
-            <h1>This will be a Title, {userid}!</h1>
+            <h1>This will be a Title, {user}!</h1>
             <h1>This will be a button that kills the user!</h1>
 
             <Shelf userid={userid} isSearching={isSearching} />
