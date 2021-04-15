@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, Header, Grid, Segment, Button, Image } from 'semantic-ui-react'
+import { Header, Grid, Button, Image } from 'semantic-ui-react'
 
 
 function Book({ id, title, authors, description, thumb, onSubmit }) {

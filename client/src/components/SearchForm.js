@@ -26,7 +26,7 @@ function SearchForm({ onSubmit }) {
     }
 
     return (
-        <Form>
+        <Form color='red'>
                 <Header as='h2'>Book Search</Header>
                 <Form.Field>
                 <label>Book Title</label>

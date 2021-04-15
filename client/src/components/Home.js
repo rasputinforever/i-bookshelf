@@ -8,6 +8,8 @@ import API from '../utils/API.js'
 
 import { Grid, Segment } from 'semantic-ui-react'
 
+import './App.css'
+
 function Home({ user, userid }){
     
     // bookshelf data
