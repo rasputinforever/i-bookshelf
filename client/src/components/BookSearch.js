@@ -1,33 +1,16 @@
 import React from 'react';
 
-import { Button, Form } from 'semantic-ui-react'
-
 import Book from './Book.js'
+import SearchForm from './SearchForm.js'
 
 import API from '../utils/API.js'
 
 function BookSearch({ userid, onNewBook }){
-    // form states
-    const [bookTitle, setBookTitle] = React.useState('')
-    const [bookAuthor, setBookAuthor] = React.useState('')
 
     const [searchFail, setSearchFail] = React.useState(false)
     const [searchResults, setSearchResults] = React.useState([])
 
-    function handleInputChange(e) {
-        switch(e.target.name) {
-            case 'title':
-              setBookTitle(e.target.value)
-              break;
-            case 'author':
-                setBookAuthor(e.target.value)
-              break;
-            default:
-              // code block
-          }     
-    }
-
-    function handleSubmit(){
+    function handleSubmit(bookTitle, bookAuthor){
         
         const queryString = ((bookTitle) ? bookTitle : '') + ((bookTitle && bookAuthor) ? ' ' : '') + ((bookAuthor) ? bookAuthor : '')
         
@@ -76,29 +59,7 @@ function BookSearch({ userid, onNewBook }){
 
     return (
         <>
-            <Form>
-
-                <Form.Field>
-                <label>Book Title</label>
-                <input 
-                    value={bookTitle}
-                    name='title'
-                    onChange={handleInputChange}
-                    placeholder='Title' />
-                </Form.Field>
-
-                <Form.Field>
-                <label>Book Author</label>
-                <input 
-                    value={bookAuthor}
-                    name='author'
-                    onChange={handleInputChange}
-                    placeholder='Author' />
-                </Form.Field>
-
-                <Button type='submit' onClick={handleSubmit}>Submit</Button>
-
-            </Form>
+            <SearchForm onSubmit={handleSubmit} />
             
             {searchFail ? <h2>Nothing Found!</h2> : foundBooks}
 

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 
 import Shelf from './Shelf.js'
-import Book from './Book.js'
 
 import API from '../utils/API.js'
 
