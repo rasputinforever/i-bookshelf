@@ -55,9 +55,9 @@ Router.delete("/api/users/:userid", async (req, res) => {
     Books.updateOne({ _id: req.params.userid }, {
       books: newBookList
     })
-    .then(() => {
+    .then((data) => {
       // final
-      res.status(200)
+      res.status(200).json(data)
     });
   })
 });

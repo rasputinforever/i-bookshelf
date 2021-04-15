@@ -6,7 +6,7 @@ import API from '../utils/API.js'
 
 import { Card } from 'semantic-ui-react'
 
-function Shelf({ userid, data }) {
+function Shelf({ userid, data, onDelete }) {
 
     const [shelfItems, setShelfItems] = React.useState([])
 
@@ -16,7 +16,7 @@ function Shelf({ userid, data }) {
 
     function handleDeleteItem(index) {
         console.log("Will delete this book: ", shelfItems[index])
-        API.deleteBook(userid, index)
+        onDelete(userid, index)
     }
 
     const shelfItemsBody = shelfItems.map((item, i) => {

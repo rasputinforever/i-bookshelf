@@ -76,12 +76,28 @@ function Home({ user, userid }){
         })
     }
 
+    function handleDeleteBook(userid, index) {
+        console.log("Deleting book")
+        API.deleteBook(userid, index)
+        .then(() => {
+            console.log("Getting all books")
+
+            API.getAllBooks(userid)
+            .then((data) => {
+                
+                setShelfData(data.data.books)
+            })
+        })
+    }
+
     // rendered search results
     const foundBooks = searchResults.map((book, i) => {
         return <Book key={i} id={book.id} title={book.title} authors={book.authors} description={book.description} thumb={book.thumb} onSubmit={newBookRequest} />
     })
 
-    const bookShelf = <Shelf userid={userid} data={shelfData} /> 
+
+
+    const bookShelf = <Shelf userid={userid} data={shelfData} onDelete={handleDeleteBook} /> 
 
     return (
         <>

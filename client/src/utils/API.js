@@ -24,7 +24,6 @@ export default {
   },
   deleteBook: function(user, query) {
     const url = "/api/users/" + user
-    console.log("Index to delete", query)
     return axios({
       method: 'delete',
       url: url,
