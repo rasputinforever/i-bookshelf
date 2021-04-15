@@ -18,7 +18,7 @@ function Book({ id, title, authors, description, thumb, onSubmit }) {
 
     return (
             
-            <Grid  id='Home'  columns='equal' stackable>
+            <Grid className="searchBook" columns='equal' stackable>
 
                 <Grid.Column width={4}>
                     <Image src={thumb} alt={title}/>
