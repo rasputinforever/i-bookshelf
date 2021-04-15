@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 
 import Shelf from './Shelf.js'
+import BookSearch from './BookSearch.js'
+import HeaderBar from './HeaderBar.js'
 
 import API from '../utils/API.js'
 
-import BookSearch from './BookSearch.js'
+import { Grid, Segment } from 'semantic-ui-react'
 
 function Home({ user, userid }){
     
@@ -25,13 +27,22 @@ function Home({ user, userid }){
 
     return (
         <>
-            <h1>This will be a Title, {user}!</h1>
-            <h1>This will be a button that kills the user!</h1>
+        <HeaderBar user={user} />
 
-            <Shelf userid={userid} data={shelfData} onDelete={searchBooks} /> 
 
-            <BookSearch userid={userid} onNewBook={searchBooks} />
+            <Grid  id='Home'  stackable columns={2}>
+                <Grid.Column>
+                <Segment id='BookShelf' >
+                    <Shelf userid={userid} data={shelfData} onDelete={searchBooks} /> 
+                </Segment>
+                </Grid.Column>
+                <Grid.Column>
+                <Segment id='Search'>
 
+                    <BookSearch  userid={userid} onNewBook={searchBooks} />
+                </Segment>
+                </Grid.Column>
+            </Grid>
         </>
     )
 }
