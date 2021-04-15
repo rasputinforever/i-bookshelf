@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, Header } from 'semantic-ui-react'
+import { Container, Header, Grid, Segment, Button, Image } from 'semantic-ui-react'
 
 
 function Book({ id, title, authors, description, thumb, onSubmit }) {
@@ -17,14 +17,21 @@ function Book({ id, title, authors, description, thumb, onSubmit }) {
     }
 
     return (
-        <Container text>
-            <Header as='h2'>{title}{authors ? <span> by {authors}</span> : <></>}</Header>
-            <img src={thumb} alt={title}/>
-            <p>
-            {description}
-            </p>
-            <button onClick={handleSaveBook}>Add to Shelf</button>
-        </Container>
+            
+            <Grid  id='Home'  columns='equal' stackable columns={2}>
+                <Header as='h2'>{title}{authors ? <span> by {authors}</span> : <></>}</Header>
+
+                <Grid.Column>
+                    <Image src={thumb} alt={title}/>
+                    <Button onClick={handleSaveBook}>Add to Shelf</Button>
+                </Grid.Column>
+
+                <Grid.Column width={8}>
+                        <p>{description}</p>
+                </Grid.Column>
+
+            </Grid>
+
     )
 }
 

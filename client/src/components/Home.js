@@ -28,11 +28,10 @@ function Home({ user, userid }){
     return (
         <>
         <HeaderBar user={user} />
-
-
             <Grid  id='Home'  stackable columns={2}>
                 <Grid.Column>
                 <Segment id='BookShelf' >
+
                     <Shelf userid={userid} data={shelfData} onDelete={searchBooks} /> 
                 </Segment>
                 </Grid.Column>
