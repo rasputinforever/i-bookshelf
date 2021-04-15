@@ -9,19 +9,25 @@ import BookSearch from './BookSearch.js'
 
 function Home({ user, userid }){
     
-    // API results state
-    const [isSearching, setIsSearching] = React.useState(false)
-    const [searchResults, setSearchResults] = React.useState([])
-    const [searchFail, setSearchFail] = React.useState(false)
+    // bookshelf data
     const [shelfData, setShelfData] = React.useState([])
 
     useEffect(() => {
+        searchBooks(userid)
+    }, [userid])
+
+    function searchBooks(userid) {
         API.getAllBooks(userid)
         .then((data) => {
-
+            
             setShelfData(data.data.books)
         })
-    }, [userid])
+    }
+
+    // Searching states
+    const [isSearching, setIsSearching] = React.useState(false)
+    const [searchResults, setSearchResults] = React.useState([])
+    const [searchFail, setSearchFail] = React.useState(false)
 
     // search button
     function handleNewSearch() {
@@ -68,35 +74,26 @@ function Home({ user, userid }){
             setSearchResults([])     
             setIsSearching(false)
 
-            API.getAllBooks(userid)
-            .then((data) => {
-    
-                setShelfData(data.data.books)
-            })
+            searchBooks(userid)
         })
     }
 
     function handleDeleteBook(userid, index) {
-        console.log("Deleting book")
         API.deleteBook(userid, index)
         .then(() => {
-            console.log("Getting all books")
 
-            API.getAllBooks(userid)
-            .then((data) => {
-                
-                setShelfData(data.data.books)
-            })
+            searchBooks(userid)
         })
     }
+
+
 
     // rendered search results
     const foundBooks = searchResults.map((book, i) => {
         return <Book key={i} id={book.id} title={book.title} authors={book.authors} description={book.description} thumb={book.thumb} onSubmit={newBookRequest} />
     })
 
-
-
+    // renderee bookshelf
     const bookShelf = <Shelf userid={userid} data={shelfData} onDelete={handleDeleteBook} /> 
 
     return (
