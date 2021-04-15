@@ -23,7 +23,7 @@ function BookSearch({ userid, onNewBook }){
                 setSearchFail(false)
 
                 data.data.items.forEach((book) => {
-                    let img = ''
+                    let img = './book.PNG'
                     if (book.volumeInfo.imageLinks) {img = book.volumeInfo.imageLinks.smallThumbnail}
                     newResults.push({
                         id: book.id,
