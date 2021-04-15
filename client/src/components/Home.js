@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Shelf from './Shelf.js'
 import Book from './Book.js'
@@ -13,6 +13,16 @@ function Home({ user, userid }){
     const [isSearching, setIsSearching] = React.useState(false)
     const [searchResults, setSearchResults] = React.useState([])
     const [searchFail, setSearchFail] = React.useState(false)
+    const [shelfData, setShelfData] = React.useState([])
+
+    useEffect(() => {
+        API.getAllBooks(userid)
+        .then((data) => {
+
+            setShelfData(data.data.books)
+        })
+    }, [userid])
+
     // search button
     function handleNewSearch() {
         setIsSearching(true)
@@ -20,6 +30,7 @@ function Home({ user, userid }){
 
     // API call to google
     function handleSubmit(bookTitle, bookAuthor){
+        
         const queryString = ((bookTitle) ? bookTitle : '') + ((bookTitle && bookAuthor) ? ' ' : '') + ((bookAuthor) ? bookAuthor : '')
         
         API.googleBook(queryString)
@@ -29,6 +40,7 @@ function Home({ user, userid }){
             if (data.data.items) {
                 
                 setSearchFail(false)
+
                 data.data.items.forEach((book) => {
                     newResults.push({
                         id: book.id,
@@ -45,14 +57,19 @@ function Home({ user, userid }){
             
             // worry about dupes? 
             setSearchResults(newResults)
+            
         });
     }
 
     function newBookRequest(newBook){
-        // sends book object, with ID, to db        
-        API.addBook(userid, newBook)
+        // sends book object, with ID, to db   
+        
+        setSearchResults([])     
         setIsSearching(false)
-        setSearchResults([])
+        API.addBook(userid, newBook)
+        .then((data) => {
+            console.log(data)
+        })
     }
 
     // rendered search results
@@ -60,12 +77,14 @@ function Home({ user, userid }){
         return <Book key={i} id={book.id} title={book.title} authors={book.authors} description={book.description} thumb={book.thumb} onSubmit={newBookRequest} />
     })
 
+    const bookShelf = <Shelf userid={userid} data={shelfData} /> 
+
     return (
         <>
             <h1>This will be a Title, {user}!</h1>
             <h1>This will be a button that kills the user!</h1>
 
-            <Shelf userid={userid} isSearching={isSearching} />
+            {bookShelf}
 
             {isSearching ? <BookSearch onSearch={handleSubmit} /> : <button onClick={handleNewSearch}>New Search</button> }
 
