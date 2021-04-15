@@ -78,23 +78,13 @@ function Home({ user, userid }){
         })
     }
 
-    function handleDeleteBook(userid, index) {
-        API.deleteBook(userid, index)
-        .then(() => {
-
-            searchBooks(userid)
-        })
-    }
-
-
-
     // rendered search results
     const foundBooks = searchResults.map((book, i) => {
         return <Book key={i} id={book.id} title={book.title} authors={book.authors} description={book.description} thumb={book.thumb} onSubmit={newBookRequest} />
     })
 
     // renderee bookshelf
-    const bookShelf = <Shelf userid={userid} data={shelfData} onDelete={handleDeleteBook} /> 
+    const bookShelf = <Shelf userid={userid} data={shelfData} onDelete={searchBooks} /> 
 
     return (
         <>

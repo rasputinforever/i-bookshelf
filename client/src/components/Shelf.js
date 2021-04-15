@@ -15,8 +15,11 @@ function Shelf({ userid, data, onDelete }) {
     }, [data])
 
     function handleDeleteItem(index) {
-        console.log("Will delete this book: ", shelfItems[index])
-        onDelete(userid, index)
+        API.deleteBook(userid, index)
+        .then(() => {
+
+            onDelete(userid)
+        })
     }
 
     const shelfItemsBody = shelfItems.map((item, i) => {
