@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Header, Menu, Icon } from 'semantic-ui-react'
+import { Header, Menu, Icon, Dropdown } from 'semantic-ui-react'
 
 function HeaderBar({ user }){
     const [activeItem, setActiveItem] = React.useState('Home')
@@ -11,38 +11,22 @@ function HeaderBar({ user }){
 
     return (
         <div>
-            <Menu fixed='top' style={{  backgroundColor: '#40D1FF'}}>
-
-                <Menu.Item
-                    name='Home'
-                    href='#Home'
-                    active={activeItem === 'Home'}
-                    onClick={handleClick}>                    
-                <Header as='h2'><Icon name="book" />iBookshelf</Header>
-                </Menu.Item>
-
+            <Menu fixed='top' borderless style={{ width: '100%', backgroundColor: '#40D1FF'}}>
+                
                 <Menu.Item>                    
-                <Header as='h3'>Welcome, {user}</Header>
+                <Header as='h2'>iBookshelf</Header>
+                <Header>{user}</Header>
                 </Menu.Item>
+                <Dropdown item icon="angle double down" text='Menu' >
+                    <Dropdown.Menu>
+                        <Dropdown.Item name='Home' href='#Home' active={activeItem === 'Home'} onClick={handleClick} icon='home' text='Home' />
+                        <Dropdown.Item name='BookShelf'  href='#BookShelf' active={activeItem === 'BookShelf'} onClick={handleClick} icon='book' text='Book Shelf' />
+                        <Dropdown.Item name='Search'  href='#Search' active={activeItem === 'Search'} onClick={handleClick} icon='search' text='Search' />
+                    </Dropdown.Menu>
+                </Dropdown>
 
 
-                <Menu.Item
-                    name='BookShelf'
-                    href='#BookShelf'
-                    active={activeItem === 'BookShelf'}
-                    onClick={handleClick}
-                    >
-                    <Header as='h4'><Icon name="book" /></Header>
-                </Menu.Item>
 
-                <Menu.Item
-                    name='Search'
-                    href='#Search'
-                    active={activeItem === 'Search'}
-                    onClick={handleClick}
-                    >
-                    <Header as='h4'><Icon name="book" /></Header>
-                </Menu.Item>
             </Menu>
         </div>
     )
