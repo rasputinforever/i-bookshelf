@@ -13,7 +13,7 @@ function BookSearch({ userid, onNewBook }){
     function handleSubmit(bookTitle, bookAuthor){
         
         const queryString = ((bookTitle) ? bookTitle : '') + ((bookTitle && bookAuthor) ? ' ' : '') + ((bookAuthor) ? bookAuthor : '')
-        
+        queryString.replace(/[^a-zA-Z ]/g, "%20")
         API.googleBook(queryString)
         
         .then((data) => {
@@ -23,13 +23,14 @@ function BookSearch({ userid, onNewBook }){
                 setSearchFail(false)
 
                 data.data.items.forEach((book) => {
+                    let img = ''
+                    if (book.volumeInfo.imageLinks) {img = book.volumeInfo.imageLinks.smallThumbnail}
                     newResults.push({
                         id: book.id,
                         title: book.volumeInfo.title,
                         authors: book.volumeInfo.authors,
                         description: book.volumeInfo.description,
-                        thumb: book.volumeInfo.imageLinks.smallThumbnail,
-                        img: book.volumeInfo.imageLinks.thumbnail,
+                        thumb: img,
                     })
                 })
             } else {

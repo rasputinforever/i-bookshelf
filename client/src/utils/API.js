@@ -7,7 +7,8 @@ export default {
     return axios.post(url);
   },
   googleBook: function(query) {
-    return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}`)
+    console.log(`https://www.googleapis.com/books/v1/volumes?q=${query}/`)
+    return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}/`)
   },
   addBook: function(user, query) {
     const url = "/api/users/" + user
