@@ -2,7 +2,7 @@ import React from 'react'
 
 import API from '../utils/API.js'
 
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form, Header, Icon } from 'semantic-ui-react'
 
 function Login({ onChange }) {
     
@@ -26,15 +26,19 @@ function Login({ onChange }) {
     }
 
     return (
-        <Form>
+        <Form style={{ margin: "30px", padding: '20px', backgroundColor:"#ffc16b"}}>
             <Form.Field>
-            <label>Choose your Username</label>
+            <Header as="h3">Welcome to i-Bookshelf!</Header>
+            <Header as="h3"><Icon name="book"/><Icon name="book"/><Icon name="book"/><Icon name="book"/><Icon name="book"/><Icon name="book"/></Header>
+            <Header as="h2">What is your name?</Header>
+
             <input 
                 value={userName}
+                style={{ width: '80%'}}
                 onChange={handleInputChange}
                 placeholder='User Name' />
             </Form.Field>
-            <Button type='submit' onClick={handleSubmit}>Submit</Button>
+            <Button type='submit' onClick={handleSubmit}><Icon name="sign-in" />Submit</Button>
         </Form>
     )
 }
