@@ -60,9 +60,7 @@ function BookSearch({ userid, onNewBook }){
     return (
         <>
             <SearchForm onSubmit={handleSubmit} />
-            
             {searchFail ? <h2>Nothing Found!</h2> : foundBooks}
-
         </>
     )
 }

@@ -19,7 +19,7 @@ function Book({ id, title, authors, description, thumb, onSubmit }) {
     return (
         <Container text>
             <Header as='h2'>{title}{authors ? <span> by {authors}</span> : <></>}</Header>
-            <img src={thumb}/>
+            <img src={thumb} alt={title}/>
             <p>
             {description}
             </p>
