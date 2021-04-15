@@ -12,8 +12,10 @@ function App() {
   // gets local storage info, if exists, set these states. Will set nothing if not there, which renders the Login page below.
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem('userID'))
-    setUserID(userData.userID)
-    setUserName(userData.user)
+    if (userData) {
+      setUserID(userData.userID)
+      setUserName(userData.user)
+    }
   }, [userID])
 
   // returned from Login to set right away
@@ -24,7 +26,7 @@ function App() {
 
   return (
     <>
-      {!userID ? <Login onChange={handleNewUser}/> : <></>}
+      {userID === '' ? <Login onChange={handleNewUser}/> : <></>}
       {userID ? <Home user={userName} userid={userID} /> : <></>}
     </>
   );

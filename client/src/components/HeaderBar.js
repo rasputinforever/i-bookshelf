@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Header, Menu, Icon, Dropdown } from 'semantic-ui-react'
+import { Header, Menu, Dropdown } from 'semantic-ui-react'
 
 function HeaderBar({ user }){
     const [activeItem, setActiveItem] = React.useState('Home')
