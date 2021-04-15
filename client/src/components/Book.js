@@ -18,15 +18,16 @@ function Book({ id, title, authors, description, thumb, onSubmit }) {
 
     return (
             
-            <Grid  id='Home'  columns='equal' stackable columns={2}>
-                <Header as='h2'>{title}{authors ? <span> by {authors}</span> : <></>}</Header>
+            <Grid  id='Home'  columns='equal' stackable>
 
-                <Grid.Column>
+                <Grid.Column width={4}>
                     <Image src={thumb} alt={title}/>
                     <Button onClick={handleSaveBook}>Add to Shelf</Button>
                 </Grid.Column>
 
-                <Grid.Column width={8}>
+                <Grid.Column>
+                    
+                <Header as='h2'>{title}{authors ? <span> by {authors}</span> : <></>}</Header>
                         <p>{description}</p>
                 </Grid.Column>
 
