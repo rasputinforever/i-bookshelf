@@ -28,6 +28,8 @@ function App() {
     <>
       {userID === '' ? <Login onChange={handleNewUser}/> : <></>}
       {userID ? <Home user={userName} userid={userID} /> : <></>}
+      
+      <p style={{ margin: '30px', color: "white"}}>Created by <a href="https://github.com/rasputinforever">Erik Portillo</a>, 2021</p>
     </>
   );
 }

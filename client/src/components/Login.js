@@ -26,6 +26,7 @@ function Login({ onChange }) {
     }
 
     return (
+        <>
         <Form style={{ margin: "30px", padding: '20px', backgroundColor:"#ffc16b"}}>
             <Form.Field>
             <Header as="h3">Welcome to i-Bookshelf!</Header>
@@ -40,6 +41,7 @@ function Login({ onChange }) {
             </Form.Field>
             <Button type='submit' onClick={handleSubmit}><Icon name="sign-in" />Submit</Button>
         </Form>
+        </>
     )
 }
 
