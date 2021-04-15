@@ -6,7 +6,7 @@ function ShelfItem({ thumb, title, index, onDelete }) {
         onDelete(index)
     }
     return (
-        <Card style={{ width: '150px'}}>
+        <Card centered={true} style={{ width: '150px'}}>
         <Image src={thumb} wrapped ui={false} style={{ width: '100%'}}/>
         <Card.Content>
           <Card.Description>{title}</Card.Description>
