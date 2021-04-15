@@ -62,11 +62,9 @@ function Home({ user, userid }){
     }
 
     function newBookRequest(newBook){
-        // sends book object, with ID, to db   
-        console.log("Logging Book")
+        // sends book object, with ID, to db
         API.addBook(userid, newBook)
-        .then((data) => {
-            console.log("Add Book COmplete", data)
+        .then(() => {
             setSearchResults([])     
             setIsSearching(false)
 

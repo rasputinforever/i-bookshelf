@@ -34,10 +34,9 @@ Router.put("/api/users/:userid", async (req, res) => {
     Books.updateOne({ _id: req.params.userid }, {
       books: newBookList
     })
-    .then(() => {
+    .then((data) => {
       // final
-      console.log("Finalized Add One Book")
-      res.status(200).json("Finished")
+      res.status(200).json(data)
     });
   })
 });
