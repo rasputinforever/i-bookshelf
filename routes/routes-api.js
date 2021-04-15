@@ -27,16 +27,17 @@ Router.put("/api/users/:userid", async (req, res) => {
   console.log("PUT request for userName: ", req.params.userid, " and ", req.body)
   Books.findOne({ _id: req.params.userid })
   .then((data) => {
+    
     // now inject new book data
     const newBookList = [...data.books, req.body]
 
     Books.updateOne({ _id: req.params.userid }, {
       books: newBookList
     })
-    .then((data) => {
+    .then(() => {
       // final
-      console.log(data)
-      res.status(200)
+      console.log("Finalized Add One Book")
+      res.status(200).json("Finished")
     });
   })
 });
