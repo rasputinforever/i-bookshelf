@@ -10,10 +10,8 @@ function HeaderBar({ user }){
     }
 
     return (
-        <>
-            <Header  as='h1'>{user}'s bookshelf!</Header>
-
-            <Menu fixed='top'>
+        <div style={{ marginTop: '50px'}}>
+            <Menu fixed='top' style={{ backgroundColor: '#40D1FF'}}>
                 <Menu.Item
                     name='Home'
                     href='#Home'
@@ -41,7 +39,7 @@ function HeaderBar({ user }){
                     Search
                 </Menu.Item>
             </Menu>
-        </>
+        </div>
     )
 }
 

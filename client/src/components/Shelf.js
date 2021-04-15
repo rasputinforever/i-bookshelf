@@ -4,7 +4,7 @@ import ShelfItem from './ShelfItem.js'
 
 import API from '../utils/API.js'
 
-import { Card, Header } from 'semantic-ui-react'
+import { Card, Header, Icon } from 'semantic-ui-react'
 
 function Shelf({ userid, data, onDelete }) {
 
@@ -28,7 +28,7 @@ function Shelf({ userid, data, onDelete }) {
 
     return (
         <>
-            <Header as='h2'>Bookshelf</Header>
+            <Header as='h2'><Icon name="book" />Bookshelf</Header>
             <Card.Group>
                 {shelfItemsBody}
             </Card.Group>

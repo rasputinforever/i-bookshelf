@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Form, Header } from 'semantic-ui-react'
+import { Button, Form, Header, Icon } from 'semantic-ui-react'
 
 
 function SearchForm({ onSubmit }) {
@@ -27,7 +27,7 @@ function SearchForm({ onSubmit }) {
 
     return (
         <Form color='red'>
-                <Header as='h2'>Book Search</Header>
+                <Header as='h2'><Icon name="search" />Book Search</Header>
                 <Form.Field>
                 <label>Book Title</label>
                 <input 
