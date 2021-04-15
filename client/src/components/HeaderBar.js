@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Header, Menu } from 'semantic-ui-react'
+import { Header, Menu, Icon } from 'semantic-ui-react'
 
 function HeaderBar({ user }){
     const [activeItem, setActiveItem] = React.useState('Home')
@@ -10,16 +10,21 @@ function HeaderBar({ user }){
     }
 
     return (
-        <div style={{ marginTop: '50px'}}>
-            <Menu fixed='top' style={{ backgroundColor: '#40D1FF'}}>
+        <div>
+            <Menu fixed='top' style={{  backgroundColor: '#40D1FF'}}>
+
                 <Menu.Item
                     name='Home'
                     href='#Home'
                     active={activeItem === 'Home'}
-                    onClick={handleClick}
-                    >
-                    Home
+                    onClick={handleClick}>                    
+                <Header as='h2'><Icon name="book" />iBookshelf</Header>
                 </Menu.Item>
+
+                <Menu.Item>                    
+                <Header as='h3'>Welcome, {user}</Header>
+                </Menu.Item>
+
 
                 <Menu.Item
                     name='BookShelf'
@@ -27,7 +32,7 @@ function HeaderBar({ user }){
                     active={activeItem === 'BookShelf'}
                     onClick={handleClick}
                     >
-                    Book Shelf
+                    <Header as='h4'><Icon name="book" /></Header>
                 </Menu.Item>
 
                 <Menu.Item
@@ -36,7 +41,7 @@ function HeaderBar({ user }){
                     active={activeItem === 'Search'}
                     onClick={handleClick}
                     >
-                    Search
+                    <Header as='h4'><Icon name="book" /></Header>
                 </Menu.Item>
             </Menu>
         </div>
